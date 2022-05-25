@@ -1,21 +1,24 @@
-<h1><%= @restaurant.name %></h1>
-<p><%= (@restaurant.category).capitalize %></p>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <p><strong>Category:</strong> <%= (@restaurant.category).capitalize %></p>
+  <p><strong>Address:</strong> <%= @restaurant.address %></p>
+  <p><strong>Phone number:</strong> <%= @restaurant.phone_number %></p>
 
-<h2>Reviews</h2>
-<h3>Add your review</h3>
-<%= simple_form_for([@restaurant, @review]) do |f| %>
+  <h2>Reviews</h2>
+  <h3>Add your review</h3>
+  <%= simple_form_for([@restaurant, @review]) do |f| %>
   <%= f.input :content %>
   <%= f.input :rating %>
   <%= f.submit 'Submit review' %>
   <%= f.button :button, 'Reset', type: :reset, class: 'btn btn-none' %>
-<% end %>
-<br>
-<ul>
-  <% @restaurant.reviews.each do |review| %>
-    <li><%= review.content %> <%= review.rating %> stars</li>
   <% end %>
-</ul>
-
-<%= link_to "Back", restaurants_path, class: "btn btn-primary" %>
+  <br>
+  <div class="cards"></div>
+  <ul class="list-group list-group-flush">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %> <strong><%= review.rating %></strong> stars</li>
+    <% end %>
+  </ul>
+  <br>
+  <%= link_to "Back", restaurants_path, class: "btn btn-primary" %>
+</div>
